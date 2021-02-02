@@ -9,7 +9,7 @@ jobs:
           app-dir: ~/
           cache-path: ~/node_modules
   Run-tests:
-    executor: node/test
+    executor: node/default
     steps:
       - run:
           command: npm run test
