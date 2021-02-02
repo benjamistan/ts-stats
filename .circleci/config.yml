@@ -1,7 +1,21 @@
 version: 2.1
 orbs:
   node: circleci/node@3.0.0
+jobs:
+  npm-install:
+    executor: node/default
+    steps:
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+  test:
+    executor: node/default
+    steps:
+      - run:
+          command: npm run test
 workflows:
-  node-tests:
+  setup:
     jobs:
-      - node/test
+      - npm-install
+  test:
+    jobs:
+      - test
